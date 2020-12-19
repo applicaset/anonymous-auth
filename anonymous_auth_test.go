@@ -1,4 +1,4 @@
-package anonymous_auth_test
+package anonymousauth_test
 
 import (
 	"context"
@@ -9,7 +9,7 @@ import (
 )
 
 func TestAuth_Validate(t *testing.T) {
-	auth := anonymous_auth.NewAuthProvider()
+	auth := anonymousauth.NewAuthProvider()
 
 	ctx := context.Background()
 

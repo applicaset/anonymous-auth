@@ -1,4 +1,4 @@
-package anonymous_auth
+package anonymousauth
 
 import (
 	"context"
@@ -22,8 +22,9 @@ func (rsp response) ID() string {
 	return rsp.id
 }
 
-func (aa *auth) Validate(_ context.Context, args map[string]interface{}) (user.ValidateResponse, error) {
+func (aa *auth) Validate(_ context.Context, args map[string]interface{}) (usersvc.ValidateResponse, error) {
 	rsp := new(response)
+
 	iGuestID, ok := args["guest_id"]
 	if !ok {
 		return rsp, nil
@@ -39,12 +40,12 @@ func (aa *auth) Validate(_ context.Context, args map[string]interface{}) (user.V
 	return rsp, nil
 }
 
-func NewAuthProvider() user.AuthProvider {
+func NewAuthProvider() usersvc.AuthProvider {
 	aa := auth{}
 
 	return &aa
 }
 
-func New() user.Option {
-	return user.WithAuthProvider(Name, NewAuthProvider())
+func New() usersvc.Option {
+	return usersvc.WithAuthProvider(Name, NewAuthProvider())
 }
